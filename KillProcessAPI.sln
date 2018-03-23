@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillProcessAPI", "KillProcessAPI\KillProcessAPI.csproj", "{13E4A109-6034-4571-9FCB-AA7EB32B49B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillProcess.API", "KillProcess.API\KillProcess.API.csproj", "{53E416CC-B04B-4654-B741-49C82B0218D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KillProcess.Infrastructure", "KillProcess.Infrastructure", "{2481E1A5-BB49-4960-8652-E7F830BB7B10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KillProcess.Domain", "KillProcess.Domain", "{5B155E23-8278-4B78-8037-F0EDEDFFCA86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KillProcess.Tests", "KillProcess.Tests", "{5704C559-80A2-4B00-8A7C-5264B0525274}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillProcess.Domain.Model", "KillProcess.Domain.Model\KillProcess.Domain.Model.csproj", "{D756B9C3-20AB-494A-BD9C-3239D4049663}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillProcess.Infrastructure.Business", "KillProcess.Infrastructure.Business\KillProcess.Infrastructure.Business.csproj", "{8C24E18D-9E88-4FF5-B1C3-9CC312E9C3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillProcess.Tests.Unit", "KillProcess.Tests.Unit\KillProcess.Tests.Unit.csproj", "{5C645E36-F31D-4063-9CB5-F4B755BD8B7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +23,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{13E4A109-6034-4571-9FCB-AA7EB32B49B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13E4A109-6034-4571-9FCB-AA7EB32B49B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13E4A109-6034-4571-9FCB-AA7EB32B49B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13E4A109-6034-4571-9FCB-AA7EB32B49B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53E416CC-B04B-4654-B741-49C82B0218D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E416CC-B04B-4654-B741-49C82B0218D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E416CC-B04B-4654-B741-49C82B0218D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E416CC-B04B-4654-B741-49C82B0218D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D756B9C3-20AB-494A-BD9C-3239D4049663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D756B9C3-20AB-494A-BD9C-3239D4049663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D756B9C3-20AB-494A-BD9C-3239D4049663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D756B9C3-20AB-494A-BD9C-3239D4049663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C24E18D-9E88-4FF5-B1C3-9CC312E9C3AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C24E18D-9E88-4FF5-B1C3-9CC312E9C3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C24E18D-9E88-4FF5-B1C3-9CC312E9C3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C24E18D-9E88-4FF5-B1C3-9CC312E9C3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C645E36-F31D-4063-9CB5-F4B755BD8B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C645E36-F31D-4063-9CB5-F4B755BD8B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C645E36-F31D-4063-9CB5-F4B755BD8B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C645E36-F31D-4063-9CB5-F4B755BD8B7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D756B9C3-20AB-494A-BD9C-3239D4049663} = {5B155E23-8278-4B78-8037-F0EDEDFFCA86}
+		{8C24E18D-9E88-4FF5-B1C3-9CC312E9C3AA} = {2481E1A5-BB49-4960-8652-E7F830BB7B10}
+		{5C645E36-F31D-4063-9CB5-F4B755BD8B7C} = {5704C559-80A2-4B00-8A7C-5264B0525274}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DCDF9FDC-A089-450B-9865-656BB7FF7818}
