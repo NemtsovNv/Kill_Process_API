@@ -1,6 +1,8 @@
 ﻿using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using KillProcess.Infrastructure.Business.Services;
+using KillProcess.Infrastructure.Business.Services.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,9 @@ namespace KillProcess.API
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
+
+            builder.RegisterType<ProcessService>().As<IProcessService>().InstancePerLifetimeScope();
+
             var container = builder.Build();
 
             return new AutofacServiceProvider(container);
