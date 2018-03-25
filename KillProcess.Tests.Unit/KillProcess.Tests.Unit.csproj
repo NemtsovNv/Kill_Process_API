@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KillProcess.Domain.Model\KillProcess.Domain.Model.csproj" />
+    <ProjectReference Include="..\KillProcess.Domain.Model\KillProcess.Domain.Core.csproj" />
     <ProjectReference Include="..\KillProcess.Infrastructure.Business\KillProcess.Infrastructure.Business.csproj" />
   </ItemGroup>
 

@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KillProcess.Domain", "KillP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KillProcess.Tests", "KillProcess.Tests", "{5704C559-80A2-4B00-8A7C-5264B0525274}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillProcess.Domain.Model", "KillProcess.Domain.Model\KillProcess.Domain.Model.csproj", "{D756B9C3-20AB-494A-BD9C-3239D4049663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillProcess.Domain.Core", "KillProcess.Domain.Model\KillProcess.Domain.Core.csproj", "{D756B9C3-20AB-494A-BD9C-3239D4049663}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillProcess.Infrastructure.Business", "KillProcess.Infrastructure.Business\KillProcess.Infrastructure.Business.csproj", "{8C24E18D-9E88-4FF5-B1C3-9CC312E9C3AA}"
 EndProject

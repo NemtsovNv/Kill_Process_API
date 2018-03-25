@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using KillProcess.Domain.Model.Command;
+using KillProcess.Domain.Core.Models;
 
 namespace KillProcess.Infrastructure.Business.Services
 {

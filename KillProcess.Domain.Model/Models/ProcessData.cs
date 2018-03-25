@@ -1,4 +1,4 @@
-﻿namespace KillProcess.Domain.Model.Command
+﻿namespace KillProcess.Domain.Core.Models
 {
     public class ProcessData
     {

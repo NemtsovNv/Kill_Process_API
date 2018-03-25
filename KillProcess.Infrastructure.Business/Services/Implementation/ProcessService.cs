@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using KillProcess.Domain.Model.Command;
+using KillProcess.Domain.Core.Models;
 
 namespace KillProcess.Infrastructure.Business.Services.Implementation
 {
