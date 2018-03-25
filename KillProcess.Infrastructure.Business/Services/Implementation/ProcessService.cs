@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Security;
 using KillProcess.Domain.Model.Command;
 
 namespace KillProcess.Infrastructure.Business.Services.Implementation
@@ -15,7 +14,7 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
             IList<ProcessData> resultData = null;
             try
             {
-                Process[] processes = Process.GetProcesses();
+                Process[] processes = GetProcessesInfo() ?? new Process[0];
 
                 resultData = processes.Select(x => new ProcessData
                 {
@@ -31,11 +30,11 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
             return resultData;
         }
 
-        public bool KillProcess(int id)
+        public int KillProcess(int id)
         {
             try
             {
-                Process[] processes = Process.GetProcesses();
+                Process[] processes = GetProcessesInfo();
 
                 foreach(var i in processes)
                 {
@@ -44,7 +43,7 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
                         i.Kill();
                         i.WaitForExit();
 
-                        return true;
+                        return id;
                     }
                 }
             }
@@ -53,7 +52,12 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
                 throw new Win32Exception("User has no permissions to kill process. Please, contact your administrator to grant specific permissions.");
             }
 
-            return false;
+            throw new ArgumentException($"No process was found with specified id : {id}");
+        }
+
+        protected virtual Process[] GetProcessesInfo()
+        {
+            return Process.GetProcesses();
         }
     }
 }

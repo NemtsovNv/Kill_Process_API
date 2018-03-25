@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KillProcess.Domain.Model.Command;
-using KillProcess.Infrastructure.Business.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using KillProcess.Infrastructure.Business.Services;
 
 namespace KillProcess.API.Controllers
 {
@@ -35,7 +30,7 @@ namespace KillProcess.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(int id)
+        public IActionResult Post([FromBody]int id)
         {
             try
             {

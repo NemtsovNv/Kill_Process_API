@@ -1,13 +1,12 @@
 ﻿using System;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using KillProcess.Infrastructure.Business.Services;
-using KillProcess.Infrastructure.Business.Services.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using KillProcess.Infrastructure.Business.Services;
+using KillProcess.Infrastructure.Business.Services.Implementation;
 
 namespace KillProcess.API
 {
@@ -24,6 +23,8 @@ namespace KillProcess.API
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddCors();
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
@@ -42,6 +43,15 @@ namespace KillProcess.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(x =>
+            {
+                x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+            });
 
             app.UseMvc();
         }

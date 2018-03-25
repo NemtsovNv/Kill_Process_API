@@ -1,7 +1,5 @@
-﻿using KillProcess.Domain.Model.Command;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using KillProcess.Domain.Model.Command;
 
 namespace KillProcess.Infrastructure.Business.Services
 {
@@ -9,6 +7,6 @@ namespace KillProcess.Infrastructure.Business.Services
     {
         IList<ProcessData> GetProcesses();
 
-        bool KillProcess(int id);
+        int KillProcess(int id);
     }
 }
