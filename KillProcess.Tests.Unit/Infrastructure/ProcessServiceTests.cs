@@ -26,7 +26,7 @@ namespace KillProcess.Tests.Infrastucture.Unit
         public void GetProcesses_Should_Returns_Correct_Result()
         {
             // Assert
-            processService = new ProcessServiceTestable(true);
+            processService = new ProcessServiceTestable(true, true);
             var expectedProcessCount = 3;
             var expectedProcessName = "cmd";
             // Act
@@ -42,7 +42,7 @@ namespace KillProcess.Tests.Infrastucture.Unit
         public void GetProcesses_Should_Returns_No_Result()
         {
             // Assert
-            processService = new ProcessServiceTestable(false);
+            processService = new ProcessServiceTestable(false, true);
             var expectedProcessCount = 0;
 
             // Act
@@ -57,7 +57,7 @@ namespace KillProcess.Tests.Infrastucture.Unit
         public void KillProcess_Should_Kill_Process()
         {
             // Assert
-            processService = new ProcessServiceTestable(true);
+            processService = new ProcessServiceTestable(true, true);
             var testProcesses = processService.GetProcesses();
             var processToKillId = testProcesses.First().Id;
             processesToKill = testProcesses.Skip(skipElementNumber).ToList();
@@ -75,8 +75,7 @@ namespace KillProcess.Tests.Infrastucture.Unit
         public void KillProcess_Should_Throw_Exception_No_Process_Found()
         {
             // Assert
-            processService = new ProcessServiceTestable(true);
-            var testProcesses = processService.GetProcesses();
+            processService = new ProcessServiceTestable(false, false);
             var notExistingProcessId = -90000;
 
             // Act
@@ -85,11 +84,11 @@ namespace KillProcess.Tests.Infrastucture.Unit
                 var actualResult = processService.KillProcess(notExistingProcessId);
 
                 // Arrange
-                Assert.Fail("Exception was not thrown");
+                Assert.Fail("Exception was not thrown.");
             }
             catch (ArgumentException ex)
             {
-                Assert.AreEqual($"No process was found with specified id : {notExistingProcessId}", ex.Message);
+                Assert.AreEqual($"No process was found with specified id : {notExistingProcessId}.", ex.Message);
             }
         }
 

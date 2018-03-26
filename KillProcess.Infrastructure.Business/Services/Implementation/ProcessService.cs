@@ -38,37 +38,43 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
         {
             try
             {
-                Process[] processes = GetProcessesInfo();
+                Process process = GetProcessesInfoById(id);
 
-                foreach(var process in processes)
+                if(process != null)
                 {
-                    if(process.Id == id)
+                    using (process)
                     {
-                        using(process)
-                        {
-                            process.Kill();
-                            process.WaitForExit();
-                        }
-
-                        return id;
+                        process.Kill();
+                        process.WaitForExit();
                     }
+
+                    return id;
                 }
             }
             catch (Win32Exception)
             {
                 throw new Win32Exception("User has no permissions to kill process. Please, contact your administrator to grant specific permissions.");
             }
+            catch(ArgumentException)
+            {
+                throw new ArgumentException($"No process was found with specified id : {id}.");
+            }
             catch (Exception ex)
             {
                 throw new Exception("Something went wrong. Please try again or contact your administrator.", ex);
             }
 
-            throw new ArgumentException($"No process was found with specified id : {id}");
+            throw new ArgumentException($"No process was found with specified id : {id}.");
         }
 
         protected virtual Process[] GetProcessesInfo()
         {
             return Process.GetProcesses();
+        }
+
+        protected virtual Process GetProcessesInfoById(int id)
+        {
+            return Process.GetProcessById(id);
         }
     }
 }
