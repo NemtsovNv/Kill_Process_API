@@ -20,10 +20,12 @@ Unit tests launch process:
 4. Click on 'Run All' to run all tests.
 
 ## Structure overview
+Base project structure:
 
 1. KillProcess.API - Web project containing controllers;
 
 2. KillProcess.Domain.Model - Class library, containing models used in solution;
+
 3. KillProcess.Infrastructure.Business - Class library, containing business services;
 
 4. KillProcess.Tests.Unit - Project unit tests.
