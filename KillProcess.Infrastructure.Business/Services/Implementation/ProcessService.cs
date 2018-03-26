@@ -22,9 +22,13 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
                     Name = x.ProcessName
                 }).ToList();
             }
-            catch(Win32Exception)
+            catch(Win32Exception ex)
             {
-                throw new Exception("User has no permissions to read process info. Please, contact your administrator.");
+                throw new Win32Exception("User has no permissions to read process info. Please, contact your administrator.", ex);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Something went wrong. Please try again or contact your administrator.", ex);
             }
 
             return resultData;
@@ -36,12 +40,15 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
             {
                 Process[] processes = GetProcessesInfo();
 
-                foreach(var i in processes)
+                foreach(var process in processes)
                 {
-                    if(i.Id == id)
+                    if(process.Id == id)
                     {
-                        i.Kill();
-                        i.WaitForExit();
+                        using(process)
+                        {
+                            process.Kill();
+                            process.WaitForExit();
+                        }
 
                         return id;
                     }
@@ -50,6 +57,10 @@ namespace KillProcess.Infrastructure.Business.Services.Implementation
             catch (Win32Exception)
             {
                 throw new Win32Exception("User has no permissions to kill process. Please, contact your administrator to grant specific permissions.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong. Please try again or contact your administrator.", ex);
             }
 
             throw new ArgumentException($"No process was found with specified id : {id}");

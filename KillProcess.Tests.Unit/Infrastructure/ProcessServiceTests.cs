@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KillProcess.Infrastructure.Business.Services;
 using KillProcess.Tests.Unit.Helpers;
+using KillProcess.Domain.Core.Models;
 
 namespace KillProcess.Tests.Infrastucture.Unit
 {
     [TestClass]
-    public class ProcessServiceTest
+    public class ProcessServiceTests
     {
         private IProcessService processService;
+        private IList<ProcessData> processesToKill;
+        private const int skipElementNumber = 1;
 
+        [TestInitialize]
+        public void InitialSetup()
+        {
+            processesToKill = null;
+        }
 
         [TestMethod]
         public void GetProcesses_Should_Returns_Correct_Result()
@@ -51,6 +60,8 @@ namespace KillProcess.Tests.Infrastucture.Unit
             processService = new ProcessServiceTestable(true);
             var testProcesses = processService.GetProcesses();
             var processToKillId = testProcesses.First().Id;
+            processesToKill = testProcesses.Skip(skipElementNumber).ToList();
+
 
             // Act
             var actualResult = processService.KillProcess(processToKillId);
@@ -76,24 +87,31 @@ namespace KillProcess.Tests.Infrastucture.Unit
                 // Arrange
                 Assert.Fail("Exception was not thrown");
             }
-            catch (ArgumentException)
+            catch (ArgumentException ex)
             {
+                Assert.AreEqual($"No process was found with specified id : {notExistingProcessId}", ex.Message);
             }
         }
 
         [TestCleanup]
         public void DeleteTestProcesses()
         {
-            var testProcesses = processService.GetProcesses();
+            if(processesToKill == null)
+            {
+                processesToKill = processService.GetProcesses();
+            }
 
-            foreach (var processInfo in testProcesses)
+            foreach (var processInfo in processesToKill)
             {
                 var process = Process.GetProcessById(processInfo.Id);
 
                 if(!process.HasExited)
                 {
-                    process.Kill();
-                    process.WaitForExit();
+                    using (process)
+                    {
+                        process.Kill();
+                        process.WaitForExit();
+                    }
                 }
             }
         }
